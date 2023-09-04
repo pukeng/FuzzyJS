@@ -76,4 +76,4 @@ var AttackModule = function() {
 }
 
 var a = new AttackModule();
-console.log(a.getCrispValue(0, 0, 0));
+console.log(a.getCrispValue(1, 6, 9));
