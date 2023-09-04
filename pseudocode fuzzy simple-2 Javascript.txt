@@ -1,0 +1,67 @@
+// Inisialisasi tingkat kesulitan soal dan waktu
+const tingkatKesulitan = "mudah"; // Awalnya mudah
+const waktu = "singkat"; // Awalnya singkat
+
+// Inisialisasi jumlah jawaban benar dan salah
+let jumlahJawabanBenar = 0;
+let jumlahJawabanSalah = 0;
+
+// Ambang batas untuk naik atau turun level
+const ambangNaik = 2; // Naik ke tingkat berikutnya setelah 2 jawaban benar
+const ambangTurun = 2; // Turun ke tingkat sebelumnya setelah 2 jawaban salah
+
+// Fungsi untuk menampilkan pertanyaan baru
+function tampilkanPertanyaanBaru() {
+  // Logika untuk menampilkan pertanyaan baru
+  console.log("Tampilkan pertanyaan baru di tingkat kesulitan: " + tingkatKesulitan);
+}
+
+// Fungsi untuk menaikkan tingkat kesulitan
+function naikTingkat() {
+  // Logika untuk naik ke tingkat berikutnya
+  if (tingkatKesulitan === "mudah") {
+    tingkatKesulitan = "sedang";
+  } else if (tingkatKesulitan === "sedang") {
+    tingkatKesulitan = "sulit";
+  }
+  console.log("Tingkat kesulitan naik menjadi: " + tingkatKesulitan);
+}
+
+// Fungsi untuk menurunkan tingkat kesulitan
+function turunTingkat() {
+  // Logika untuk turun ke tingkat sebelumnya
+  if (tingkatKesulitan === "sulit") {
+    tingkatKesulitan = "sedang";
+  } else if (tingkatKesulitan === "sedang") {
+    tingkatKesulitan = "mudah";
+  }
+  console.log("Tingkat kesulitan turun menjadi: " + tingkatKesulitan);
+}
+
+// Fungsi untuk mengevaluasi jawaban
+function evaluasiJawaban(benar, singkat) {
+  // Benar = true jika jawaban benar, singkat = true jika waktu singkat
+
+  if (benar) {
+    jumlahJawabanBenar++;
+    jumlahJawabanSalah = 0;
+  } else {
+    jumlahJawabanSalah++;
+    jumlahJawabanBenar = 0;
+  }
+
+  // Cek apakah jumlah jawaban benar atau salah sudah mencapai ambang batas
+  if (jumlahJawabanBenar >= ambangNaik) {
+    naikTingkat();
+    jumlahJawabanBenar = 0;
+  } else if (jumlahJawabanSalah >= ambangTurun) {
+    turunTingkat();
+    jumlahJawabanSalah = 0;
+  }
+
+  // Tampilkan pertanyaan baru setelah evaluasi
+  tampilkanPertanyaanBaru();
+}
+
+// Memulai permainan dengan pertanyaan pertama
+tampilkanPertanyaanBaru();

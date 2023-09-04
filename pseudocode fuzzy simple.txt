@@ -1,0 +1,48 @@
+// PRECONDITION: tingkat_kesulitan = mudah, waktu = 0
+// Variabel awal
+// Variabel tingkat kesulitan (mudah, sedang, sulit)
+// Variabel waktu (singkat <= 5 detik, cukup 5 < x <= 10 detik, lama = 10 < x <=15 detik)
+
+DECLARE tingkat_kesulitan_soal = mudah
+DECLARE jumlah_jawaban_benar = 0
+DECLARE jumlah_jawaban_salah = 0
+DECLARE time = 0
+count_timer;
+
+// Membaca jawaban dan waktu dari pemain
+READ jawaban
+READ waktu
+
+IF jawaban IS true THEN
+    IF waktu = singkat THEN
+        // Pemain menjawab benar dengan waktu singkat
+        INCREMENT jumlah_jawaban_benar
+    ELSE IF waktu = singkat THEN
+        // Pemain menjawab benar, tapi tidak dengan waktu singkat
+        INCREMENT jumlah_jawaban_benar
+    END IF
+
+    // Mengganti tingkat kesulitan soal berdasarkan jumlah jawaban benar
+    IF jumlah_jawaban_benar = 1 THEN
+        tingkat_kesulitan_soal = sedang
+    ELSE IF jumlah_jawaban_benar >= 2 THEN
+        tingkat_kesulitan_soal = sulit
+    END IF
+ELSE
+    IF waktu = singkat THEN
+        // Pemain menjawab salah dengan waktu singkat
+        INCREMENT jumlah_jawaban_salah
+    ELSE
+        // Pemain menjawab salah, tapi tidak dengan waktu singkat
+        INCREMENT jumlah_jawaban_salah
+    END IF
+
+    // Mengganti tingkat kesulitan soal berdasarkan jumlah jawaban salah
+    IF jumlah_jawaban_salah >= 2 THEN
+        tingkat_kesulitan_soal = mudah
+    ELSE IF jumlah_jawaban_salah = 1 THEN
+        tingkat_kesulitan_soal = sedang
+    END IF
+END IF
+
+// Variabel tingkat_kesulitan_soal sekarang menggambarkan tingkat kesulitan soal berikutnya
